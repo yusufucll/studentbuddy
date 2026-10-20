@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudentBuddy - Een interactieve en gebruiksvriendelijke website met studietips en ontspanningsoefeningen voor studenten.">
+  <title>StudentBuddy | Studietips & Ontspanning</title>
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <span class="brand-icon">🎓</span>
+        <span>StudentBuddy</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li>
+            <a href="#tips" class="nav-link active" data-tab="tips">
+              <span>📚</span> Studietips
+            </a>
+          </li>
+          <li>
+            <a href="#relaxation" class="nav-link" data-tab="relaxation">
+              <span>🧘</span> Pauze & Ontspanning
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Application Content -->
+  <main class="main-content">
+
+    <!-- Studietips Section (User Story 1) -->
+    <section id="tips-section">
+      <div class="hero">
+        <h1 class="hero-title">Effectieve Studietips</h1>
+        <p class="hero-subtitle">
+          Ontdek praktische, wetenschappelijk onderbouwde methodes om slimmer te plannen, 
+          beter te focussen en met zelfvertrouwen je examens voor te bereiden.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="filter-wrapper">
+        <span class="filter-label">Filter op categorie</span>
+        <div class="filter-buttons">
+          <button type="button" class="filter-btn active" data-filter="all">Alle Tips</button>
+          <button type="button" class="filter-btn" data-filter="planning">⏱️ Planning & Tijd</button>
+          <button type="button" class="filter-btn" data-filter="focus">🎯 Focus & Concentratie</button>
+          <button type="button" class="filter-btn" data-filter="exams">🧠 Examens & Geheugen</button>
+        </div>
+      </div>
+
+      <!-- Tips Cards Grid (Dynamic JS injection) -->
+      <div id="tips-grid" class="tips-grid" aria-live="polite">
+        <!-- Tip cards will be dynamically loaded by js/tips.js -->
+      </div>
+    </section>
+
+    <!-- Relaxation Section Placeholder (Ready for User Story 2) -->
+    <section id="relaxation-section" class="section-placeholder">
+      <div class="placeholder-icon">🧘‍♂️</div>
+      <h2 class="placeholder-title">Pauze & Ontspanning</h2>
+      <p class="placeholder-text">
+        Hier komt binnenkort de interactieve 4-7-8 ademhalingsoefening en snelle pauze-activiteiten 
+        om je hoofd leeg te maken tijdens intensieve studiedagen.
+      </p>
+      <span class="tip-badge badge-focus">In ontwikkeling voor Sprint 1 (User Story 2)</span>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>
+      <strong>StudentBuddy</strong> &copy; 2026 – UCLL Graduaat Programmeren | Teamvaardigheden (Team 1)
+    </p>
+  </footer>
+
+  <!-- Application Scripts -->
+  <script src="js/tips.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
