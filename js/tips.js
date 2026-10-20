@@ -1,89 +1,99 @@
 /**
  * Study Tips Module (User Story 1)
- * Handles tips dataset, filtering logic, and dynamic DOM rendering.
+ * Handles official tips dataset, category filtering logic, and dynamic DOM rendering.
  */
 
-// Dataset containing curated study tips for students
+// Official study tips dataset for StudentBuddy (UCLL Graduaat Programmeren)
 const studyTipsData = [
   {
     id: 1,
     title: "De Pomodoro-techniek",
-    category: "focus",
-    categoryLabel: "Focus & Concentratie",
-    timeEstimate: "25 min focus",
+    category: "planning",
+    categoryLabel: "Planning & Tijd",
+    timeEstimate: "25 min focus / 5 min rust",
     icon: "⏱️",
-    description: "Studeer 25 minuten met volledige concentratie en neem daarna direct 5 minuten rust. Na 4 sessies verdien je een langere pauze van 20-30 minuten.",
-    actionTag: "Direct toepasbaar"
+    description: "Werk gedurende 25 minuten volledig geconcentreerd aan een taak en neem daarna een pauze van 5 minuten. Na vier keer neem je een langere pauze van 20-30 minuten.",
+    actionTag: "Tijdbeheer"
   },
   {
     id: 2,
-    title: "Active Recall (Actief Ophalen)",
-    category: "exams",
-    categoryLabel: "Examens & Geheugen",
-    timeEstimate: "Tijdens het leren",
+    title: "Actief herhalen",
+    category: "focus",
+    categoryLabel: "Focus & Geheugen",
+    timeEstimate: "Tijdens het studeren",
     icon: "🧠",
-    description: "Sluit je boek en schrijf uit je hoofd op wat je net hebt gelezen. Jezelf testen versterkt neurale verbindingen 3x effectiever dan herlezen.",
-    actionTag: "Bewezen leermethode"
+    description: "Sluit je boeken en probeer de leerstof uit je hoofd te vertellen of op te schrijven alsof je het aan iemand anders uitlegt, in plaats van passief te herlezen.",
+    actionTag: "Active Recall"
   },
   {
     id: 3,
-    title: "De Twee-Minuten Regel",
-    category: "planning",
-    categoryLabel: "Planning & Tijd",
-    timeEstimate: "< 2 min",
-    icon: "⚡",
-    description: "Kost een taak minder dan twee minuten (zoals een e-mail beantwoorden of een To-Do opschrijven)? Doe het dan onmiddellijk in plaats van uitstellen.",
-    actionTag: "Productiviteitsbooster"
-  },
-  {
-    id: 4,
-    title: "Gespreide Herhaling (Spaced Repetition)",
-    category: "exams",
-    categoryLabel: "Examens & Geheugen",
-    timeEstimate: "Over meerdere dagen",
-    icon: "📅",
-    description: "Herhaal leerstof met toenemende tussenpozen: na 1 dag, na 3 dagen en na 1 week. Dit voorkomt dat je vlak voor het examen moet 'crammen'.",
-    actionTag: "Voor lange termijn"
-  },
-  {
-    id: 5,
-    title: "No-Phone Zone (Digitaal Minimalisme)",
-    category: "focus",
-    categoryLabel: "Focus & Concentratie",
-    timeEstimate: "Voor elke sessie",
-    icon: "🔕",
-    description: "Leg je smartphone in een andere kamer of zet hem in vliegtuigmodus. Slechts het zien van je scherm vermindert al cognitieve hersencapaciteit.",
-    actionTag: "Minder afleiding"
-  },
-  {
-    id: 6,
-    title: "De Eisenhower Prioriteitenmatrix",
-    category: "planning",
-    categoryLabel: "Planning & Tijd",
-    timeEstimate: "Ochtendroutine",
-    icon: "🎯",
-    description: "Verdeel je taken in: Dringend & Belangrijk (eerst doen), Belangrijk maar niet dringend (inplannen), en Niet belangrijk (schrappen of delegeren).",
-    actionTag: "Overzicht & Rust"
-  },
-  {
-    id: 7,
     title: "De Feynman-techniek",
-    category: "exams",
-    categoryLabel: "Examens & Geheugen",
+    category: "focus",
+    categoryLabel: "Focus & Geheugen",
     timeEstimate: "15-20 min",
     icon: "🗣️",
-    description: "Leg een moeilijk concept uit in eenvoudige woorden alsof je het uitlegt aan een 10-jarige. Waar je hapert, zit het gat in je eigen begrip.",
+    description: "Leg een complex onderwerp uit in simpele taal, alsof je het aan een kind uitlegt. Waar je vastloopt of moeilijke vaktermen gebruikt, begrijp je de stof kennelijk zelf nog niet volledig.",
     actionTag: "Diepgaand inzicht"
   },
   {
+    id: 4,
+    title: "Oefen meer dan je herleest",
+    category: "exams",
+    categoryLabel: "Oefenen & Examens",
+    timeEstimate: "Praktijkoefening",
+    icon: "💻",
+    description: "Zeker voor programmeren, wiskunde en andere praktische vakken is oefenen essentieel. Probeer zelf code te schrijven, oefeningen op te lossen en fouten te verbeteren zonder meteen naar de oplossing te kijken.",
+    actionTag: "Essentieel voor IT"
+  },
+  {
+    id: 5,
+    title: "Herhaal gespreid",
+    category: "exams",
+    categoryLabel: "Oefenen & Examens",
+    timeEstimate: "Meerdaagse planning",
+    icon: "📅",
+    description: "Herhaal wat je geleerd hebt na één dag, na enkele dagen en na een week. Zo bouw je je kennis geleidelijk op in plaats van alles op het laatste moment te proberen onthouden.",
+    actionTag: "Spaced Repetition"
+  },
+  {
+    id: 6,
+    title: "Kleuren hebben een doel",
+    category: "focus",
+    categoryLabel: "Focus & Geheugen",
+    timeEstimate: "Tijdens noteren",
+    icon: "🎨",
+    description: "Gebruik bijvoorbeeld één kleur voor definities, één voor belangrijke begrippen en één voor voorbeelden. Maak niet je hele cursus kleurrijk, want dan valt niets nog op.",
+    actionTag: "Slim markeren"
+  },
+  {
+    id: 7,
+    title: "Actieve samenvattingen",
+    category: "focus",
+    categoryLabel: "Focus & Geheugen",
+    timeEstimate: "Einde leersessie",
+    icon: "📝",
+    description: "Kopieer niet gewoon je cursus. Noteer de kern van elk onderdeel in korte zinnen. Zo ben je de leerstof meteen actief aan het verwerken in plaats van over te typen.",
+    actionTag: "Verwerking"
+  },
+  {
     id: 8,
-    title: "De 'Eat That Frog' Methode",
+    title: "Concrete doelen stellen",
     category: "planning",
     categoryLabel: "Planning & Tijd",
-    timeEstimate: "Eerste ochtendtaak",
-    icon: "🐸",
-    description: "Begin je studiedag altijd met de moeilijkste of meest tegenstaande taak. Heb je die af, dan voelt de rest van de dag licht en ontspannen.",
-    actionTag: "Tegen uitstelgedrag"
+    timeEstimate: "Vooraf bepalen",
+    icon: "🎯",
+    description: "Zeg niet: 'Ik ga twee uur studeren.' Zeg liever: 'Ik kan na deze sessie de vijf belangrijkste begrippen uitleggen.' Zo weet je exact wanneer je doel bereikt is.",
+    actionTag: "SMART doelen"
+  },
+  {
+    id: 9,
+    title: "Leren van fouten",
+    category: "exams",
+    categoryLabel: "Oefenen & Examens",
+    timeEstimate: "Foutenevaluatie",
+    icon: "🔍",
+    description: "Noteer oefeningen die je fout had en analyseer waarom je fout zat. Probeer ze een paar dagen later opnieuw op te lossen zonder naar de uitwerking te kijken.",
+    actionTag: "Groeimindset"
   }
 ];
 
@@ -93,7 +103,6 @@ const studyTipsData = [
  * @returns {string} HTML string.
  */
 function createTipCardMarkup(tip) {
-  // Determine badge styling based on category
   let badgeClass = "badge-planning";
   if (tip.category === "focus") {
     badgeClass = "badge-focus";
@@ -116,7 +125,7 @@ function createTipCardMarkup(tip) {
       </div>
       <div class="tip-footer">
         <span class="tip-action-tag">${tip.actionTag}</span>
-        <span>StudentBuddy Tip #${tip.id}</span>
+        <span>Tip #${tip.id}</span>
       </div>
     </article>
   `;
@@ -150,11 +159,9 @@ function initTipsFilter() {
 
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Update active state in UI
       filterButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
 
-      // Filter data
       const selectedCategory = button.getAttribute("data-filter");
       if (selectedCategory === "all") {
         renderStudyTips(studyTipsData);
