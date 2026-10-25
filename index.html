@@ -6,8 +6,9 @@
   <meta name="description" content="StudentBuddy - Een interactieve en gebruiksvriendelijke website met studietips en ontspanningsoefeningen voor studenten.">
   <title>StudentBuddy | Studietips & Ontspanning</title>
   
-  <!-- Main Stylesheet -->
+  <!-- Main Stylesheets -->
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/relaxation.css">
 </head>
 <body>
 
@@ -65,16 +66,155 @@
       </div>
     </section>
 
-    <!-- Relaxation Section Placeholder (Ready for User Story 2) -->
-    <section id="relaxation-section" class="section-placeholder">
-      <div class="placeholder-icon">🧘‍♂️</div>
-      <h2 class="placeholder-title">Pauze & Ontspanning</h2>
-      <p class="placeholder-text">
-        Hier komt binnenkort de interactieve 4-7-8 ademhalingsoefening en snelle pauze-activiteiten 
-        om je hoofd leeg te maken tijdens intensieve studiedagen.
-      </p>
-      <span class="tip-badge badge-focus">In ontwikkeling voor Sprint 1 (User Story 2)</span>
+    <!-- Relaxation Section (User Story 2) -->
+    <section id="relaxation-section" class="relaxation-section" style="display: none;">
+      <div class="hero">
+        <h1 class="hero-title">Pauze & Ontspanning</h1>
+        <p class="hero-subtitle">
+          Neem even afstand van je scherm, herlaad je mentale energie en verlaag je stressniveau met deze 
+          gerichte, interactieve pauze-oefeningen.
+        </p>
+      </div>
+
+      <!-- Relaxation Activities Grid -->
+      <div class="relaxation-grid">
+        
+        <!-- Activity 1: 4-7-8 Breathing Exercise -->
+        <article class="activity-card featured">
+          <div class="activity-header">
+            <span class="activity-badge badge-breathing">Ademhaling</span>
+            <span class="activity-duration">⏱️ 2 - 4 min</span>
+          </div>
+          <div class="activity-body">
+            <h2 class="activity-title">
+              <span>🌬️</span> 4-7-8 Ademhalingsoefening
+            </h2>
+            <p class="activity-description">
+              Kalmeer je zenuwstelsel en verhoog je zuurstofopname. Adem 4 seconden rustig in, 
+              houd 7 seconden vast en adem 8 seconden langzaam en ontspannen uit.
+            </p>
+          </div>
+          <div class="activity-footer">
+            <button type="button" class="btn btn-primary" id="btn-open-breathing">
+              Start Ademhaling
+            </button>
+          </div>
+        </article>
+
+        <!-- Activity 2: 20-20-20 Eye Reset -->
+        <article class="activity-card">
+          <div class="activity-header">
+            <span class="activity-badge badge-eyes">Oogzorg</span>
+            <span class="activity-duration">⏱️ 20 sec</span>
+          </div>
+          <div class="activity-body">
+            <h2 class="activity-title">
+              <span>👀</span> 20-20-20 Oogrust
+            </h2>
+            <p class="activity-description">
+              Voorkom vermoeide en branderige ogen door intensief beeldschermwerk. Kijk elke 20 minuten minstens 
+              20 seconden naar een punt op minstens 6 meter afstand.
+            </p>
+          </div>
+          <div class="activity-footer">
+            <button type="button" class="btn btn-secondary" id="btn-open-eyes">
+              Start Oogrust
+            </button>
+          </div>
+        </article>
+
+        <!-- Activity 3: Quick Desk Stretch -->
+        <article class="activity-card">
+          <div class="activity-header">
+            <span class="activity-badge badge-stretch">Fysiek</span>
+            <span class="activity-duration">⏱️ 2 min</span>
+          </div>
+          <div class="activity-body">
+            <h2 class="activity-title">
+              <span>🤸</span> Snelle Bureaustretch
+            </h2>
+            <p class="activity-description">
+              Maak vastzittende nekspieren, schouders en polsen los met 3 eenvoudige stretches 
+              die je direct zittend op je bureaustoel kunt uitvoeren.
+            </p>
+          </div>
+          <div class="activity-footer">
+            <button type="button" class="btn btn-secondary" id="btn-open-stretch">
+              Bekijk Stretches
+            </button>
+          </div>
+        </article>
+
+      </div>
     </section>
+
+    <!-- Interactive Exercise Modal Overlay (User Story 2) -->
+    <div id="exercise-modal" class="modal-overlay" style="display: none;" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+      <div class="modal-dialog">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 id="modal-title" class="modal-title">Ademhalingsoefening</h2>
+          <button type="button" class="modal-close-btn" id="btn-modal-close" aria-label="Sluit oefening">&times;</button>
+        </div>
+
+        <!-- Modal Body: Interactive Breathing / Timer View -->
+        <div id="exercise-interactive-view" class="modal-body">
+          <div class="breathing-container">
+            <div id="breathing-circle" class="breathing-circle">
+              <span id="circle-phase-label" class="circle-phase">Klaar</span>
+              <span id="circle-countdown" class="circle-countdown">4s</span>
+            </div>
+          </div>
+
+          <p id="exercise-instruction" class="exercise-instruction">
+            Klik op 'Start' om te beginnen met ontspannen.
+          </p>
+
+          <div id="exercise-cycle-tracker" class="cycle-tracker">
+            Cyclus: <span id="current-cycle">1</span> / 4
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="exercise-controls">
+            <button type="button" class="btn btn-primary" id="btn-exercise-start">Start</button>
+            <button type="button" class="btn btn-warning" id="btn-exercise-pause" style="display: none;">Pauzeer</button>
+            <button type="button" class="btn btn-outline" id="btn-exercise-reset">Herstart</button>
+          </div>
+        </div>
+
+        <!-- Modal Body: Desk Stretch View -->
+        <div id="exercise-stretch-view" class="modal-body stretch-view" style="display: none;">
+          <div class="stretch-cards">
+            <div class="stretch-step">
+              <span class="stretch-num">1</span>
+              <div>
+                <h3 class="stretch-step-title">Nek Stretch</h3>
+                <p class="stretch-step-text">Laat je rechteroor rustig naar je rechterschouder zakken. Houd 15 seconden vast en wissel naar links.</p>
+              </div>
+            </div>
+            <div class="stretch-step">
+              <span class="stretch-num">2</span>
+              <div>
+                <h3 class="stretch-step-title">Schouder Rollen</h3>
+                <p class="stretch-step-text">Rol je schouders 5 keer rustig naar achteren en daarna 5 keer naar voren om spanning los te laten.</p>
+              </div>
+            </div>
+            <div class="stretch-step">
+              <span class="stretch-num">3</span>
+              <div>
+                <h3 class="stretch-step-title">Polslosmaking</h3>
+                <p class="stretch-step-text">Strek je arm vooruit en buig je hand zachtjes naar beneden en boven. Essentieel voor programmeurs!</p>
+              </div>
+            </div>
+          </div>
+          <div class="exercise-controls">
+            <button type="button" class="btn btn-primary" id="btn-stretch-close">Klaar met Stretchen</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
   </main>
 
@@ -87,6 +227,7 @@
 
   <!-- Application Scripts -->
   <script src="js/tips.js"></script>
+  <script src="js/relaxation.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
