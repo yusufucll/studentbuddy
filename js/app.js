@@ -18,12 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const targetTab = link.getAttribute("data-tab");
 
+      // Switch active section visibility
       if (targetTab === "tips") {
         tipsSection.style.display = "block";
-        relaxationSection.classList.remove("active");
+        relaxationSection.style.display = "none";
       } else if (targetTab === "relaxation") {
         tipsSection.style.display = "none";
-        relaxationSection.classList.add("active");
+        relaxationSection.style.display = "block";
       }
     });
   });
