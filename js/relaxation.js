@@ -156,6 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
    * Advances to the next phase in the 4-7-8 breathing cycle.
    */
   function advanceBreathingPhase() {
+    // Play chime sound at the end of each phase (3 times per cycle)
+    playNotificationSound();
+
     phaseIndex++;
 
     // Completed one full 4-7-8 cycle
@@ -172,6 +175,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     applyBreathingPhase();
+  }
+
+  /**
+   * Plays a gentle audio chime using the Web Audio API without needing external audio files.
+   */
+  function playNotificationSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5 pleasant chime
+      gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+
+      oscillator.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 0.8);
+    } catch (error) {
+      // AudioContext fallback handled silently
+    }
   }
 
   /**
@@ -193,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
    */
   function completeEyesExercise() {
     stopTimer();
+    playNotificationSound();
     circlePhaseLabel.textContent = "Klaar!";
     circleCountdown.textContent = "✓";
     exerciseInstruction.textContent = "Je ogen hebben rust gehad. Knipper een paar keer en ga weer gefocust aan de slag.";
